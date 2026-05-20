@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b337dd3e-61cb-4b40-8056-a64640cecea3" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/week-2-spring-framework/project/webprogramming/src/main/resources/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/week-2-spring-framework/project/webprogramming/src/main/resources/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,12 +38,12 @@
     &quot;state&quot;: &quot;OPEN&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/TIvanov17/web-programming-foundations-2026.git&quot;,
-    &quot;accountId&quot;: &quot;f912374c-5632-456e-ab9d-abc2b5892359&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/georgi20045/homework.git",
+    "accountId": "f912374c-5632-456e-ab9d-abc2b5892359"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -70,12 +70,13 @@
     "JUnit.DeliveryServiceTest.executor": "Run",
     "JUnit.WebprogrammingApplicationTests.executor": "Run",
     "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "georgi",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -89,15 +90,6 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="WebprrigramingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="webprogramming" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pu.fmi.webprogramming.WebprogrammingApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b337dd3e-61cb-4b40-8056-a64640cecea3" name="Changes" comment="" />
@@ -108,6 +100,7 @@
       <workItem from="1778707908301" duration="2526000" />
       <workItem from="1778710477847" duration="2762000" />
       <workItem from="1778824663270" duration="3839000" />
+      <workItem from="1778830770707" duration="180000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
