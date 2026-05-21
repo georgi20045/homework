@@ -4,43 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b337dd3e-61cb-4b40-8056-a64640cecea3" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="4343aef1-720b-4169-a857-72dc4bb9263e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/contoller/rest/DeliveryApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/contoller/rest/DeliveryApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/repository/CourierRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/repository/CourierRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/service/DeliveryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;history&quot;: [
-    {
-      &quot;state&quot;: &quot;OPEN&quot;
-    }
-  ],
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "georgi20045"
   }
-}</component>
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/georgi20045/homework.git",
+    "url": "https://github.com/TIvanov17/web-programming-foundations-2026.git",
     "accountId": "f912374c-5632-456e-ab9d-abc2b5892359"
   }
 }]]></component>
@@ -51,81 +36,60 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8,
-  &quot;fromUser&quot;: false
-}</component>
-  <component name="ProjectId" id="3Dgdynqn7A62QF2Q4hfCpie8KUR" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3E1gBAIcyr1Vje1zk0cVkqpyulK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.DeliveryApiTest.executor": "Run",
     "JUnit.DeliveryServiceTest.executor": "Run",
     "JUnit.WebprogrammingApplicationTests.executor": "Run",
-    "JavaScript Debug.index.html.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
+    "git-widget-placeholder": "master",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Georgi.LENOVOLAPTOP/Desktop/papka/web-programming-foundations-2026/week-3-spring-mvc-rest-api/project/webprogramming",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="WebprogrammingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="webprogramming" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pu.fmi.webprogramming.WebprogrammingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b337dd3e-61cb-4b40-8056-a64640cecea3" name="Changes" comment="" />
-      <created>1778707906070</created>
+      <changelist id="4343aef1-720b-4169-a857-72dc4bb9263e" name="Changes" comment="" />
+      <created>1779351352523</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1778707906070</updated>
-      <workItem from="1778707908301" duration="2526000" />
-      <workItem from="1778710477847" duration="2762000" />
-      <workItem from="1778824663270" duration="3839000" />
-      <workItem from="1778830770707" duration="180000" />
+      <updated>1779351352523</updated>
+      <workItem from="1779351353869" duration="990000" />
     </task>
-    <task id="LOCAL-00001" summary=".">
-      <option name="closed" value="true" />
-      <created>1778710851931</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1778710851931</updated>
-    </task>
-    <task id="LOCAL-00002" summary=".">
-      <option name="closed" value="true" />
-      <created>1778827100572</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1778827100572</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
