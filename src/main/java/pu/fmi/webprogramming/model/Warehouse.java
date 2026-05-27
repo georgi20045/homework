@@ -1,9 +1,20 @@
 package pu.fmi.webprogramming.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "WAREHOUSE")
 public class Warehouse {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "ID")
   private Long id;
+
+  @Column(name = "CITY", nullable = false, length = 100, unique = true)
   private String city;
+
+  public Warehouse() {}
 
   public Warehouse(Long id, String city) {
     this.id = id;

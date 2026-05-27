@@ -1,5 +1,6 @@
 package pu.fmi.webprogramming.controller.rest;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import pu.fmi.webprogramming.model.Courier;
 import pu.fmi.webprogramming.model.CreateDeliveryDTO;
 import pu.fmi.webprogramming.model.Delivery;
 import pu.fmi.webprogramming.model.enums.DeliveryStatusEnum;
-import pu.fmi.webprogramming.repository.CourierRepository;
+import pu.fmi.webprogramming.repository.CourierJpaRepository;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
@@ -21,7 +22,7 @@ public class DeliveryApiTest {
 
   @Autowired WebTestClient client;
 
-  @Autowired private CourierRepository courierRepository;
+  @Autowired private CourierJpaRepository courierRepository;
 
   private Delivery testDelivery;
   private Courier availableCourier;
@@ -43,7 +44,7 @@ public class DeliveryApiTest {
             .getResponseBody();
 
     // Взимане на наличен куриер
-    availableCourier = courierRepository.findAvailableCourier();
+    availableCourier = courierRepository.findFirstByAvailableTrue().get();
   }
 
   @Test
@@ -113,6 +114,7 @@ public class DeliveryApiTest {
   void testAssignCourierNotAvailable() {
     // Маркиране на куриера като зает
     availableCourier.setAvailable(false);
+    courierRepository.saveAndFlush(availableCourier);
 
     client
         .put()
@@ -130,4 +132,11 @@ public class DeliveryApiTest {
         .jsonPath("$.message")
         .isEqualTo("Courier is not available");
   }
+
+  @AfterEach
+  void cleanup() {
+    availableCourier.setAvailable(true);
+    courierRepository.saveAndFlush(availableCourier);
+  }
+
 }

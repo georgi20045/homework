@@ -1,5 +1,6 @@
 package pu.fmi.webprogramming.repository;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import pu.fmi.webprogramming.model.Courier;
 import pu.fmi.webprogramming.model.Customer;
@@ -10,36 +11,39 @@ import java.util.List;
 @Repository
 public class CourierRepository {
 
-  private List<Courier> couriers = new ArrayList<>();
+  private final JdbcTemplate jdbcTemplate;
 
-  public CourierRepository() {
-    couriers.add(new Courier(1L,"Ivan", "Ivanov", true, "Plovdiv"));
-    couriers.add(new Courier(2L, "Dragan", "Petkanov", true, "Sofia"));
+  public CourierRepository(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
   }
 
   public Courier findAvailableCourier() {
-    Courier availableCourier =
-        couriers.stream()
-                .filter(courier -> courier.isAvailable())
-                .findFirst()
-                .orElse(null);
+    Courier availableCourier = jdbcTemplate.queryForObject(
+            "SELECT * FROM COURIER WHERE AVAILABLE = true LIMIT 1",
+            (rs, rowNum) ->
+                    new Courier(
+                            rs.getLong("ID"),
+                            rs.getString("FIRST_NAME"),
+                            rs.getString("LAST_NAME"),
+                            rs.getBoolean("AVAILABLE"),
+                            rs.getString("CITY")
+                    )
+            );
 
     return availableCourier;
   }
 
-  public Courier findById(Long id) {
-
-    Courier foundCourier =
-            couriers.stream()
-                    .filter(courier -> courier.getId().equals(id))
-                    .findFirst()
-                    .orElse(null);
-
-    return foundCourier;
-
-  }
-
   public List<Courier> getAllCouriers() {
-    return couriers;
+    return jdbcTemplate.query(
+            "SELECT * FROM COURIER",
+            (rs, rowNum) ->
+                    new Courier(
+                            rs.getLong("ID"),
+                            rs.getString("FIRST_NAME"),
+                            rs.getString("LAST_NAME"),
+                            rs.getBoolean("AVAILABLE"),
+                            rs.getString("CITY")
+                    )
+    );
   }
 }

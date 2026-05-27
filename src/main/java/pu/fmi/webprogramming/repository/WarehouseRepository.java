@@ -1,6 +1,8 @@
 package pu.fmi.webprogramming.repository;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import pu.fmi.webprogramming.model.Courier;
 import pu.fmi.webprogramming.model.Customer;
 import pu.fmi.webprogramming.model.Warehouse;
 
@@ -10,20 +12,22 @@ import java.util.List;
 @Repository
 public class WarehouseRepository {
 
-  private List<Warehouse> warehouses = new ArrayList<>();
+  private final JdbcTemplate jdbcTemplate;
 
-  public WarehouseRepository() {
-    warehouses.add(new Warehouse(1L, "Plovdiv"));
-    warehouses.add(new Warehouse(2L, "Sofia"));
+  public WarehouseRepository(JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
   }
 
   public Warehouse findByCustomerCity(Customer customer) {
-    Warehouse foundWarehouse =
-        warehouses.stream()
-            .filter(warehouse -> warehouse.getCity().equals(customer.getCity()))
-            .findFirst()
-            .orElse(warehouses.get(1));
+    String sql = "SELECT * FROM WAREHOUSE WHERE CITY = '" + customer.getCity() + "'";
+    return jdbcTemplate.queryForObject(
+            sql,
+            (rs, rowNum) ->
+                    new Warehouse(
+                            rs.getLong("ID"),
+                            rs.getString("CITY")
+                    )
+    );
 
-    return foundWarehouse;
   }
 }

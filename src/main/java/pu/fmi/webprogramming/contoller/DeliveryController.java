@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pu.fmi.webprogramming.exception.DeliveryCustomException;
 import pu.fmi.webprogramming.model.Customer;
 import pu.fmi.webprogramming.model.Delivery;
+import pu.fmi.webprogramming.repository.CustomerJpaRepository;
 import pu.fmi.webprogramming.service.DeliveryServiceInterface;
 
 import java.util.ArrayList;
@@ -16,29 +17,23 @@ import java.util.List;
 public class DeliveryController {
 
   private final DeliveryServiceInterface deliveryService;
-  private List<Customer> customers = new ArrayList<>();
+  private final CustomerJpaRepository customerRepository;
 
-  public DeliveryController(DeliveryServiceInterface deliveryService) {
+
+  public DeliveryController(DeliveryServiceInterface deliveryService, CustomerJpaRepository customerRepository) {
     this.deliveryService = deliveryService;
-    Customer customer1 = new Customer(1L, "Ivan", "Ivanov", "ivan.ivanov", "000", "Plovdiv");
-    Customer customer2 = new Customer(2L, "Georgi", "Ivanov", "georgi.ivanov", "000", "Plovdiv");
-    customers.add(customer1);
-    customers.add(customer2);
+    this.customerRepository = customerRepository;
   }
 
   @RequestMapping(value = "/createDelivery", method = RequestMethod.GET)
   public String getCreateDeliveryPage(Model model) {
-    model.addAttribute("customers", customers);
+    model.addAttribute("customers", customerRepository.findAll());
     return "create-delivery.html";
   }
 
   @PostMapping("/createDelivery")
   public String createDelivery(@RequestParam Long customerId, Model model) {
-    Customer customerFound =
-        customers.stream()
-            .filter(customer -> customer.getId().equals(customerId))
-            .findFirst()
-            .orElse(null);
+    Customer customerFound = customerRepository.findById(customerId).orElse(null);
 
     if (customerFound == null) {
       throw new DeliveryCustomException("Customer with id: " + customerId + " not found");

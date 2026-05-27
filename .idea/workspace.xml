@@ -4,31 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4343aef1-720b-4169-a857-72dc4bb9263e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/contoller/rest/DeliveryApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/contoller/rest/DeliveryApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/repository/CourierRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/repository/CourierRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/service/DeliveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pu/fmi/webprogramming/service/DeliveryService.java" afterDir="false" />
-    </list>
+    <list default="true" id="81a3cbf2-09b7-424f-8b37-a428636eedd8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
-  </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "georgi20045"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/TIvanov17/web-programming-foundations-2026.git",
-    "accountId": "f912374c-5632-456e-ab9d-abc2b5892359"
-  }
-}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -37,55 +18,45 @@
     </option>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8,
-  "fromUser": false
+  "customColor": "",
+  "associatedIndex": 2
 }]]></component>
-  <component name="ProjectId" id="3E1gBAIcyr1Vje1zk0cVkqpyulK" />
+  <component name="ProjectId" id="3EJCizv4R6FmOegAzHM1kmUfAjd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "JUnit.DeliveryApiTest.executor": "Run",
-    "JUnit.DeliveryServiceTest.executor": "Run",
-    "JUnit.WebprogrammingApplicationTests.executor": "Run",
+    "JUnit.GetDeliveriesByDeliveryApiTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Georgi.LENOVOLAPTOP/Desktop/papka/web-programming-foundations-2026/week-3-spring-mvc-rest-api/project/webprogramming",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration name="WebprogrammingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="webprogramming" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="pu.fmi.webprogramming.WebprogrammingApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4343aef1-720b-4169-a857-72dc4bb9263e" name="Changes" comment="" />
-      <created>1779351352523</created>
+      <changelist id="81a3cbf2-09b7-424f-8b37-a428636eedd8" name="Changes" comment="" />
+      <created>1779887422725</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1779351352523</updated>
-      <workItem from="1779351353869" duration="990000" />
+      <updated>1779887422725</updated>
+      <workItem from="1779887429028" duration="1214000" />
     </task>
     <servers />
   </component>

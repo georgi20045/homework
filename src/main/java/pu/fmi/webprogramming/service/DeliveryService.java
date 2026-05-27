@@ -2,37 +2,33 @@ package pu.fmi.webprogramming.service;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pu.fmi.webprogramming.exception.DeliveryCustomException;
-import pu.fmi.webprogramming.model.Courier;
-import pu.fmi.webprogramming.model.Customer;
-import pu.fmi.webprogramming.model.Delivery;
-import pu.fmi.webprogramming.model.Warehouse;
+import pu.fmi.webprogramming.model.*;
 import pu.fmi.webprogramming.model.enums.DeliveryStatusEnum;
-import pu.fmi.webprogramming.repository.CourierRepository;
-import pu.fmi.webprogramming.repository.DeliveryRepository;
-import pu.fmi.webprogramming.repository.WarehouseRepository;
+import pu.fmi.webprogramming.repository.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static pu.fmi.webprogramming.model.enums.DeliveryStatusEnum.*;
 
 @Service
 public class DeliveryService implements DeliveryServiceInterface {
 
-  private final DeliveryRepository deliveryRepository;
-  private final CourierRepository courierRepository;
-  private final WarehouseRepository warehouseRepository;
+  private final DeliveryJpaRepository deliveryRepository;
+  private final CourierJpaRepository courierRepository;
+  private final WarehouseJpaRepository warehouseRepository;
   private final DeliveryEstimator deliveryEstimator;
 
   public DeliveryService(
-      DeliveryRepository deliveryRepository,
-      CourierRepository courierRepository,
-      WarehouseRepository warehouseRepository,
+      DeliveryJpaRepository deliveryRepository,
+      CourierJpaRepository courierRepository,
+      WarehouseJpaRepository warehouseRepository,
       DeliveryEstimator deliveryEstimator) {
     this.deliveryRepository = deliveryRepository;
     this.courierRepository = courierRepository;
@@ -54,16 +50,16 @@ public class DeliveryService implements DeliveryServiceInterface {
   public Delivery createDelivery(Customer customer) {
     Delivery delivery = new Delivery();
 
-    Courier courier = courierRepository.findAvailableCourier();
-    Warehouse warehouse = warehouseRepository.findByCustomerCity(customer);
+    Optional<Courier> courierOptional = courierRepository.findFirstByAvailableTrue();
+    Warehouse warehouse = warehouseRepository.findByCity(customer.getCity());
 
     delivery.setCreatedAt(LocalDateTime.now());
     delivery.setCustomer(customer);
     delivery.setDeliveredAt(null);
     delivery.setWarehouse(warehouse);
 
-    if (courier != null) {
-      delivery.setCourier(courier);
+    if (courierOptional.isPresent()) {
+      delivery.setCourier(courierOptional.get());
       delivery.setDeliveryStatus(ASSIGNED);
     } else {
       delivery.setDeliveryStatus(CREATED);
@@ -80,7 +76,7 @@ public class DeliveryService implements DeliveryServiceInterface {
   @Override
   public boolean updateDeliveryStatus(Long id, DeliveryStatusEnum newStatus) {
 
-    Delivery delivery = deliveryRepository.findById(id);
+    Delivery delivery = deliveryRepository.findById(id).orElse(null);
 
     if (delivery == null) {
       return false;
@@ -88,6 +84,7 @@ public class DeliveryService implements DeliveryServiceInterface {
 
     if (isStatusValid(delivery.getDeliveryStatus(), newStatus)) {
       delivery.setDeliveryStatus(newStatus);
+      deliveryRepository.save(delivery);
       return true;
     }
 
@@ -96,55 +93,95 @@ public class DeliveryService implements DeliveryServiceInterface {
 
   @Override
   public List<Delivery> getAllDeliveries() {
-    return deliveryRepository.findAllDeliveries();
+    return deliveryRepository.findAll();
+  }
+
+  @Override
+  public List<Delivery> getDeliveriesBy(DeliveryFilter filter) {
+
+    // TODO: Довършване на имплементацията на метода
+    // (използвайте логика за филтриране, pagination и сортиране)
+// 1. Определяне на посоката на сортиране (по подразбиране: DESC / низходящо)
+    // 1. Определяне на посоката на сортиране (по подразбиране: DESC)
+
+    // * Създай Pageable обект от подадения филтър:
+    //    → page (номер на страница)
+    //    → size (размер на страница)
+    //    * Създайте Sort обект oт подадените във филтъра:
+    //        → sortBy (поле за сортиране) - ако не е подадено, то по подразбиране трябва да е createdBy
+    //        → direction (asc / desc) - ако не е подадено, то по подразбиране трябва да е низходящо
+
+    // * Имайте предвид всички възможни случаи за филтриране:
+    //    → Ако няма подадени филтри (status и customerId са null):
+    //       - върни всички доставки
+    //    → Ако е подаден само customerId:
+    //       - върни доставки само за този клиент
+    //    → Ако е подаден само status:
+    //       - върни доставки само със съответния статус
+    //    → Ако са подадени и двата филтъра:
+    //       - върни доставки, които отговарят едновременно на status и customerId
+
+    // * Уверите се, че резултатът винаги е ограничен чрез Pageable
+    // * Уверите се, че резултатът е сортиран според подадения sortBy и direction
+    // * Методът трябва да връща само списък (List<Delivery>), без Page обект
+
+    // ВАЖНО:
+    // * Всички предоставени Unit тестове (GetDeliveriesByDeliveryApiTest) трябва да минават успешно
+    // * Не променяйте сигнатурата на метода
+    // * Не променяй поведението на API-то
+    Sort.Direction direction = Sort.Direction.DESC;
+    if (filter.getDirection() != null && "asc".equalsIgnoreCase(filter.getDirection())) {
+      direction = Sort.Direction.ASC;
+    }
+
+    // 2. Определяне на полето за сортиране (по подразбиране: "createdAt")
+    String sortBy = (filter.getSortBy() != null && !filter.getSortBy().trim().isEmpty())
+            ? filter.getSortBy()
+            : "createdAt";
+
+    Sort sort = Sort.by(direction, sortBy);
+
+    // 3. Създаване на Pageable обект (директно вземаме int стойностите, без null проверки)
+    Pageable pageable = PageRequest.of(filter.getPage(), filter.getSize(), sort);
+
+    // 4. Проверка на комбинациите от филтри
+    boolean hasStatus = filter.getStatus() != null;
+    boolean hasCustomerId = filter.getCustomerId() != null;
+
+    if (hasStatus && hasCustomerId) {
+      return deliveryRepository.findByDeliveryStatusAndCustomerId(filter.getStatus(), filter.getCustomerId(), pageable);
+    } else if (hasStatus) {
+      return deliveryRepository.findByDeliveryStatus(filter.getStatus(), pageable);
+    } else if (hasCustomerId) {
+      return deliveryRepository.findByCustomerId(filter.getCustomerId(), pageable);
+    } else {
+      return deliveryRepository.findAll(pageable).getContent();
+    }
   }
 
   @Override
   public Delivery assignCourier(Long id, Long courierId) {
 
-    // TODO: Довършване на имплементацията за промяна на доставчика за дадена поръчка
-    // (използвай добавената логика в новото REST API - PUT '/api/deliveries/{id}/courier')
+    Delivery delivery =
+        deliveryRepository
+            .findById(id)
+            .orElseThrow(() -> new DeliveryCustomException("Delivery not found"));
+    Courier selectedCourier =
+        courierRepository
+            .findById(courierId)
+            .orElseThrow(() -> new DeliveryCustomException("Courier not found"));
 
-    // * Проверете дали доставка с такова id съществува:
-    //    → Ако не е намерена, хвърлете грешка (DeliveryCustomException) със съобщение "Delivery not found"
-    // * Проверете дали съществува куриер с подаденото courierId:
-    //    → Ако не е намерен, грешка със съобщение "Courier not found"
-    // * Проверете дали куриера е наличен:
-    //    → Ако не е наличен, грешка със съобщение "Courier is not available"
-    // * Ако всички валидации минат успешно
-    //    → Назначи куриера на доставката, смени статуса на ASSIGNED и използвай логиката
-    //      от предното домашно за изчисляване очаквана дата на доставка
-    // * Маркирай куриера като зает
-
-    Delivery delivery = deliveryRepository.findById(id);
-
-    if (delivery == null) {
-      throw new DeliveryCustomException("Delivery not found");
-    }
-
-    Courier courier = courierRepository.findById(courierId);
-
-    if(courier == null) {
-      throw new DeliveryCustomException("Courier not found");
-    }
-
-    if(!courier.isAvailable())
-    {
+    if (!selectedCourier.isAvailable()) {
       throw new DeliveryCustomException("Courier is not available");
     }
 
-    delivery.setDeliveryStatus(ASSIGNED);
-    delivery.setCourier(courier);
+    delivery.setCourier(selectedCourier);
+    delivery.setDeliveryStatus(DeliveryStatusEnum.ASSIGNED);
     delivery.setEstimatedArrivalAt(deliveryEstimator.estimateArrivalTime(delivery));
-    courier.setAvailable(false);
-    deliveryRepository.save(delivery);
 
-    // ВАЖНО:
-    // * Всички предоставени Unit тестове (DeliveryApiTest) трябва да минават успешно
-    // * Не променяйте тестовете
-    // * Не променяйте сигнатурата на метода
+    selectedCourier.setAvailable(false);
 
-   return delivery;
+    return deliveryRepository.save(delivery);
   }
 
   private boolean isStatusValid(DeliveryStatusEnum currentStatus, DeliveryStatusEnum newStatus) {
@@ -158,12 +195,11 @@ public class DeliveryService implements DeliveryServiceInterface {
     if (IN_PROGRESS.equals(currentStatus) && DELIVERED.equals(newStatus)) {
       return true;
     }
-    if ((CREATED.equals(currentStatus)
-        || ASSIGNED.equals(currentStatus)) && CANCELED.equals(newStatus)) {
+    if ((CREATED.equals(currentStatus) || ASSIGNED.equals(currentStatus))
+        && CANCELED.equals(newStatus)) {
       return true;
     }
 
     return false;
   }
-
 }

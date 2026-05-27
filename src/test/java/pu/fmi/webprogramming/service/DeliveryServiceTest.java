@@ -9,11 +9,10 @@ import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pu.fmi.webprogramming.model.*;
 import pu.fmi.webprogramming.model.enums.DeliveryStatusEnum;
-import pu.fmi.webprogramming.repository.CourierRepository;
-import pu.fmi.webprogramming.repository.DeliveryRepository;
-import pu.fmi.webprogramming.repository.WarehouseRepository;
+import pu.fmi.webprogramming.repository.*;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -21,9 +20,9 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class DeliveryServiceTest {
 
-  @Mock private DeliveryRepository deliveryRepository;
-  @Mock private CourierRepository courierRepository;
-  @Mock private WarehouseRepository warehouseRepository;
+  @Mock private DeliveryJpaRepository deliveryRepository;
+  @Mock private CourierJpaRepository courierRepository;
+  @Mock private WarehouseJpaRepository warehouseRepository;
 
   @Spy private DeliveryEstimator deliveryEstimator;
 
@@ -45,8 +44,8 @@ class DeliveryServiceTest {
     Warehouse warehouse = new Warehouse(1L, "Plovdiv");
     Courier courier = new Courier(1L, "Ivan", "Ivanov", true, "Plovdiv");
 
-    when(warehouseRepository.findByCustomerCity(customer)).thenReturn(warehouse);
-    when(courierRepository.findAvailableCourier()).thenReturn(courier);
+    when(warehouseRepository.findByCity(customer.getCity())).thenReturn(warehouse);
+    when(courierRepository.findFirstByAvailableTrue()).thenReturn(Optional.of(courier));
 
     Delivery result = deliveryService.createDelivery(customer);
 
@@ -63,8 +62,8 @@ class DeliveryServiceTest {
             "088", "Plovdiv");
     Warehouse warehouse = new Warehouse(1L, "Plovdiv");
 
-    when(warehouseRepository.findByCustomerCity(customer)).thenReturn(warehouse);
-    when(courierRepository.findAvailableCourier()).thenReturn(null);
+    when(warehouseRepository.findByCity(customer.getCity())).thenReturn(warehouse);
+    when(courierRepository.findFirstByAvailableTrue()).thenReturn(Optional.empty());
 
     Delivery result = deliveryService.createDelivery(customer);
 
@@ -82,8 +81,8 @@ class DeliveryServiceTest {
     Warehouse warehouse = new Warehouse(2L, "Sofia");
     Courier courier = new Courier(2L ,"Dragan", "Petkanov", true, "Sofia");
 
-    when(warehouseRepository.findByCustomerCity(customer)).thenReturn(warehouse);
-    when(courierRepository.findAvailableCourier()).thenReturn(courier);
+    when(warehouseRepository.findByCity(customer.getCity())).thenReturn(warehouse);
+    when(courierRepository.findFirstByAvailableTrue()).thenReturn(Optional.of(courier));
 
     Delivery result = deliveryService.createDelivery(customer);
 
@@ -100,8 +99,8 @@ class DeliveryServiceTest {
             "088", "Varna");
     Warehouse warehouse = new Warehouse(1L, "Sofia");
 
-    when(warehouseRepository.findByCustomerCity(customer)).thenReturn(warehouse);
-    when(courierRepository.findAvailableCourier()).thenReturn(null);
+    when(warehouseRepository.findByCity(customer.getCity())).thenReturn(warehouse);
+    when(courierRepository.findFirstByAvailableTrue()).thenReturn(Optional.empty());
 
     Delivery result = deliveryService.createDelivery(customer);
 
@@ -118,8 +117,8 @@ class DeliveryServiceTest {
             "088", "Varna");
     Warehouse warehouse = new Warehouse(1L, "Sofia");
 
-    when(warehouseRepository.findByCustomerCity(customer)).thenReturn(warehouse);
-    when(courierRepository.findAvailableCourier()).thenReturn(null);
+    when(warehouseRepository.findByCity(customer.getCity())).thenReturn(warehouse);
+    when(courierRepository.findFirstByAvailableTrue()).thenReturn(Optional.empty());
 
     deliveryService.createDelivery(customer);
 

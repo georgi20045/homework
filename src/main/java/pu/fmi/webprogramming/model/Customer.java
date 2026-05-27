@@ -1,13 +1,35 @@
 package pu.fmi.webprogramming.model;
 
+import jakarta.persistence.*;
+
+import javax.naming.Name;
+
+@Entity
+@Table(name = "CUSTOMER")
 public class Customer {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  @Column(name = "FIRST_NAME", nullable = false, length = 100)
   private String firstName;
+
+  @Column(name = "LAST_NAME", nullable = false, length = 100)
   private String lastName;
+
+  @Column(name = "USERNAME", nullable = false, length = 100)
   private String username;
+
+  @Column(name = "PHONE_NUMBER", length = 100)
   private String phoneNumber;
+
+  @Column(name = "CITY", nullable = false, length = 100)
   private String city;
+
+  public Customer(){
+
+  }
 
   public Customer(
       Long id,
